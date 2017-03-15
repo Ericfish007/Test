@@ -1,122 +1,60 @@
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>选项卡自动切换-35ui.cn</title>
-<style type="text/css">
-* {
- margin:0;
- padding:0;
-}
-body {
- font-size:12px;
- line-height:22px;
-}
-ul, li {
- list-style:none;
-}
-.tab {
-}
-.tab li {
- width:100px;
- font-size:14px;
- height:25px;
- line-height:25px;
- text-align:center;
- border:1px solid #999;
- background:#CCC;
- float:left;
- margin:100px 0 0 10px;
- cursor:pointer;
-}
-.tab li.active {
- background:#f60;
- color:#fff;
- font-weight:bold;
-}
-#content {
- clear:both;
- padding:50px 0 0 100px;
-}
-#content li {
- display:none;
-}
-</style>
-<script type="text/javascript">
-window.onload=function()
-{
- var oBox=document.getElementById('box')
- var oTab=document.getElementById('tab')
- var aTabli=oTab.getElementsByTagName('li')
- var oCon=document.getElementById('content')
- var aConli=oCon.getElementsByTagName('li')
- 
- 
- var i=0;
- var timer=null;
- var iNow=0;  //定时器索引
 
- for(i=0;i<aTabli.length;i++)
- {
-  aTabli[i].index=i;
-  
-  aTabli[i].onclick=function()
-  {
-   iNow=this.index;  //将当前点击的索引赋值给定时器索引
-      tab();
-  }
- }
- 
- function tab()
- {
-  for(i=0;i<aTabli.length;i++)
-  {
-  aTabli[i].className=''  
-  aConli[i].style.display='none' 
-  }
-  aTabli[iNow].className='active' 
-  aConli[iNow].style.display='block'
- }
- function next()
- {
-  iNow++
-  if(iNow==aTabli.length) 
-  {
-   iNow=0; 
-  }
-  tab();
-  
-     }
-  timer=setInterval(next,1000)
-  oBox.onmouseover=function()
-  {
-  clearInterval(timer)
-  };
-   oBox.onmouseout=function()
-  {
-   timer=setInterval(next,1000)
-  };
- 
- 
- 
- 
- 
- 
- }
-</script>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
 </head>
+
 <body>
-<div id="box">
-  <ul class="tab" id="tab">
-    <li class="active">标题1</li>
-    <li>标题2</li>
-    <li>标题3</li>
-  </ul>
-  <ul id="content">
-    <li style="display:block;">对应标题111111</li>
-    <li>对应标题222222</li>
-    <li>对应标题33333</li>
-  </ul>
-</div>
+
+    <h3>污染城市列表</h3>
+    <ul id="aqi-list">
+        <!--   
+    <li>第一名：福州（样例），10</li>
+      <li>第二名：福州（样例），10</li> -->
+    </ul>
+
+    <script type="text/javascript">
+        var aqiData = [
+            ["北京", 90],
+            ["上海", 50],
+            ["福州", 10],
+            ["广州", 50],
+            ["成都", 90],
+            ["西安", 100]
+        ];
+
+        (function () {
+
+            /*
+            在注释下方编写代码
+            遍历读取aqiData中各个城市的数据
+            将空气质量指数大于60的城市显示到aqi-list的列表中
+            */
+            var aqiList = document.querySelector('#aqi-list');
+            var tempArr = [];
+            var successArr;
+            var strCityArr;
+            var sli = '';
+            aqiData.forEach(function (ele, index) {
+                tempArr.push({
+                    'city': ele[0],
+                    'num': ele[1]
+                })
+            })
+            successArr = tempArr.filter(function (x) {
+                return x.num > 60;
+            })
+            strCityArr = successArr.map(function (ele) {
+                return `<li>${ele.city}</li>`
+            })
+            strCity.forEach(function (x) {
+                sli += x;
+            })
+            aqiList.innerHTML = sli;
+        })();
+    </script>
 </body>
+
 </html>
- 
