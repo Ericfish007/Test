@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>IFE JavaScript Task 01</title>
+    <title>IFE JavaScript Task 02</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
                 return x.num > 60;
             })
             strCityArr = successArr.map(function (ele) {
-                return `<li>${ele.city}</li>`
+                return `<li>城市${ele.city}，污染指数${ele.num}</li>`
             })
             strCityArr.forEach(function (x) {
                 sli += x;
